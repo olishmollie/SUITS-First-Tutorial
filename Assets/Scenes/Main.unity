@@ -533,7 +533,7 @@ MonoBehaviour:
   mouseSensitivity: 1
   cameraSpeed: 10
   clampAngle: 80
-  ballPrefab: {fileID: 6286131381591850062, guid: f408dc562b0bd7847a6732d7e91114d7,
+  ballPrefab: {fileID: 5389427836507439778, guid: 030f65b56b36aef499792e2d60476833,
     type: 3}
 --- !u!1 &1024448483
 GameObject:

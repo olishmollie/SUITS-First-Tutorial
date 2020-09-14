@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Security.Cryptography.X509Certificates;
+//using System.Diagnostics;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
@@ -58,6 +61,22 @@ public class CameraControl : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // Left click
         {
             // Add stuff here
+            RaycastHit hit;
+            bool hitSomething = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit);
+
+            if (hitSomething)
+            {
+                GameObject ball = Instantiate(ballPrefab, hit.point, Quaternion.identity) as GameObject;
+
+                Collider collider = ball.GetComponent<Collider>();
+
+                // Raise the ball above the floor.
+                ball.transform.localPosition = new Vector3(hit.point.x, hit.point.y + collider.bounds.extents.y, hit.point.z);
+
+                // Turn the ball so that its normal vector is perpendicular to the floor.
+                ball.transform.localRotation = Quaternion.FromToRotation(ball.transform.localPosition, hit.normal);
+            }
+
         }
     }
 }
